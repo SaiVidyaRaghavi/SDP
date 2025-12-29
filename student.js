@@ -1,6 +1,6 @@
 // student.js (ES module) — complete version with teacher remark editing and role-aware export
-import { renderLineChart } from './charts.js';
-import { csvEscape, downloadCsv } from './exporter.js';
+import { renderLineChart } from 'charts.js';
+import { csvEscape, downloadCsv } from 'exporter.js';
 
 // --- Session & Role Checks ---
 const role = sessionStorage.getItem('role');
@@ -9,7 +9,7 @@ if (!role && !sessionStorage.getItem('studentId')) {
 }
 
 const studentId = sessionStorage.getItem('studentId');
-if (!studentId) location.href = '/pages/login.html';
+if (!studentId) location.href = 'login.html';
 
 // --- UI Setup ---
 document.getElementById('studentName').textContent =
@@ -200,7 +200,7 @@ function setupExports(currentRole) {
   if (reportLink) {
     reportLink.addEventListener('click', () => {
       sessionStorage.removeItem('viewedByTeacher');
-      location.href = '/pages/student-report.html';
+      location.href = 'student-report.html';
     });
   }
 }
