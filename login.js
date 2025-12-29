@@ -1,7 +1,7 @@
 // login.js (ES module)
 
 async function findTeacher(idOrEmail) {
-  const res = await fetch('/data/teachers.json');
+  const res = await fetch('teachers.json');
   const list = await res.json();
   return list.find(
     t =>
@@ -12,7 +12,7 @@ async function findTeacher(idOrEmail) {
 }
 
 async function findStudentByRollOrId(id) {
-  const res = await fetch('/data/students.json');
+  const res = await fetch('students.json');
   const list = await res.json();
   return list.find(
     s =>
@@ -52,7 +52,7 @@ form.addEventListener('submit', async e => {
       const t = await findTeacher(ident);
       if (!t)
         throw new Error(
-          'Teacher not found. Use teacher id or email from /data/teachers.json'
+          'Teacher not found. Use teacher id or email from teachers.json'
         );
       sessionStorage.setItem('role', 'teacher');
       sessionStorage.setItem('teacherId', t.id);
@@ -62,7 +62,7 @@ form.addEventListener('submit', async e => {
       const s = await findStudentByRollOrId(ident);
       if (!s)
         throw new Error(
-          'Student not found. Use student roll or id from /data/students.json'
+          'Student not found. Use student roll or id from students.json'
         );
       sessionStorage.setItem('role', 'student');
       sessionStorage.setItem('studentId', s.id);
