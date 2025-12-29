@@ -57,7 +57,7 @@ form.addEventListener('submit', async e => {
       sessionStorage.setItem('role', 'teacher');
       sessionStorage.setItem('teacherId', t.id);
       sessionStorage.setItem('teacherName', t.name);
-      location.href = '/pages/teacher-dashboard.html';
+      location.href = 'teacher-dashboard.html';
     } else {
       const s = await findStudentByRollOrId(ident);
       if (!s)
@@ -67,7 +67,7 @@ form.addEventListener('submit', async e => {
       sessionStorage.setItem('role', 'student');
       sessionStorage.setItem('studentId', s.id);
       sessionStorage.setItem('studentName', s.name);
-      location.href = '/pages/student-dashboard.html';
+      location.href = 'student-dashboard.html';
     }
   } catch (err) {
     msg.textContent = err.message;
