@@ -1,19 +1,19 @@
 // teacher.js — complete version with Submit button, teacher-only CSV export, and Classes & Subjects
-import { renderBarChart } from './charts.js';
-import { csvEscape, downloadCsv } from './exporter.js';
+import { renderBarChart } from 'charts.js';
+import { csvEscape, downloadCsv } from 'exporter.js';
 
 if (sessionStorage.getItem('role') !== 'teacher') {
-  location.href = '/pages/login.html';
+  location.href = 'login.html';
 }
 
 const teacherId = sessionStorage.getItem('teacherId');
-if (!teacherId) location.href = '/pages/login.html';
+if (!teacherId) location.href = 'login.html';
 
 document.getElementById('teacherName').textContent =
   sessionStorage.getItem('teacherName') || 'Teacher';
 document.getElementById('logoutBtn').addEventListener('click', () => {
   sessionStorage.clear();
-  location.href = '/pages/login.html';
+  location.href = 'login.html';
 });
 
 let data = null;
@@ -22,9 +22,9 @@ let studentsYouTeach = [];
 
 async function loadData() {
   const [studentsRes, scoresRes, teachersRes] = await Promise.all([
-    fetch('/data/students.json'),
-    fetch('/data/scores.json'),
-    fetch('/data/teachers.json')
+    fetch('students.json'),
+    fetch('scores.json'),
+    fetch('teachers.json')
   ]);
   const students = await studentsRes.json();
   const scoresJson = await scoresRes.json();
@@ -37,7 +37,7 @@ async function init() {
   me = data.teachers.find(t => t.id === teacherId);
   if (!me) {
     sessionStorage.clear();
-    location.href = '/pages/login.html';
+    location.href = 'login.html';
     return;
   }
 
